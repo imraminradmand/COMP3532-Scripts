@@ -17,14 +17,7 @@ function check_word {
 six_letter_words=6letters.txt
 tries=1
 echo "Welcome to this Wordle Clone - we do 6 letter words here"
-read -p "Guess a six  letter word to start: " guessedWord
-
-length=${#guessedWord}
-
-while [[ $length -lt 6 ]] || [[ $length -gt 6 ]]; do
-    read -p "Incorrect length, try again: " guessedWord
-    length=${#guessedWord}
-done
+read -n 6 -p "Guess a six  letter word to start: " guessedWord
 
 randomWord=$(shuf -n 1 $six_letter_words)
 echo $randomWord
@@ -33,14 +26,14 @@ while [ $tries -lt 7 ]; do
     while [ $guessedWord != $randomWord ]; do
 	check_word $randomWord $guessedWord
 	echo
-	read -p "Your next guess: " guessedWord
+	read -n 6 -p "Your next guess: " guessedWord
     done
     ((tries++))
-    if [ $guessedWord == $randomWord ] && [ $tries -eq 1 ]; then
+    if [ $guessedWord == $randomWord ] && (( $tries == 1 )); then
 	echo "Got lucky eh?"
-    elif [ $guessedWord == $randomWord ] && [ $tries -lte 3 ]; then
+    elif [ $guessedWord == $randomWord ] && (( $tries <= 3 )); then
 	echo "Nicely done!"
-    elif [ $guessedWord == $randomWord ] && [ $tries -lte 5 ]; then
+    elif [ $guessedWord == $randomWord ] && (( $tries <= 5 )); then
 	 echo "Cutting it close..."
     else
 	echo "Close call"
