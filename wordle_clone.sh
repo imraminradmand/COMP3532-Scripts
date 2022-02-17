@@ -5,8 +5,7 @@ read -p "Guess a five letter word to start: " guessedWord
 
 length=${#guessedWord}
 
-if [[ $length -lt 5 ]] || [[ $length -gt 5 ]]; then
-    echo "incorrect length"
-else
-    echo "aight lets go"
-fi
+while [[ $length -lt 5 ]] || [[ $length -gt 5 ]]; do
+    read -p "Incorrect length, try again: " guessedWord
+    length=${#guessedWord}
+done
