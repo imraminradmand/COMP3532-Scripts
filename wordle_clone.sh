@@ -27,23 +27,27 @@ done
 
 randomWord=$(shuf -n 1 $six_letter_words)
 echo $randomWord
-while [ $tries -lt 7 ]; do
-    echo $tries
+
+if [ $tries -lt 7 ]; then
     while [ $guessedWord != $randomWord ]; do
+	echo $tries
+	((tries++))
 	check_word $randomWord $guessedWord
 	echo
 	read  -p "Your next guess: " guessedWord
-    done
-    ((tries++))
-    if (( $guessedWord == $randomWord )) && (( $tries == 1 )); then
-	echo "Got lucky eh?"
-    elif (( $guessedWord == $randomWord )) && (( $tries <= 3 )); then
-	echo "Nicely done!"
-    elif (( $guessedWord == $randomWord )) && (( $tries <= 5 )); then
-	 echo "Cutting it close..."
-    else
-	echo "Close call"
-    fi
-done
+	length=${#guessedWord}
+   done
+fi
 
-echo "Ran out of tries :( better luck next time"
+if (($guessedWord == $randomWord)) && (($tries == 1)); then
+    echo "Got lucky eh?"
+elif (($guessedWord == $randomWord)) && (($tries <= 3)); then
+    echo "Nicely done"
+elif (($guessedWord == $randomWord)) && (($tries <= 5)); then
+    echo "Cutting it close..."
+elif (($guesseWord == $randomWord)) && (($tries == 7 )); then
+     echo "Close call"
+else
+    echo "Ran out of tries :( better luck next time"
+    
+fi
