@@ -31,7 +31,7 @@ randomWord=$(shuf -n 1 $six_letter_words)
 
 while [[ $guessedWord != $randomWord ]] && [[ $allowedAttempts -ne 0 ]]; do
     ((--allowedAttempts))
-    echo $allowedAttempts
+    #echo $allowedAttempts
     check_word $randomWord $guessedWord
     echo
     read  -p "Your next guess: " guessedWord
@@ -49,5 +49,5 @@ elif (( $guessedWord == $randomWord )) && (( allowedAttempts >= 3 )); then
 elif (( $guessedWord == $randomWord )) && (( allowedAttempts <= 2 )) && (( allowedAttempts != 0 )); then
     echo "Cutting it close..."
 elif (( allowedAttemps == 0)); then
-    echo "Ran out of attempts :( better luck next time"
+    echo "Ran out of attempts :( better luck next time -- The word was: $randomWord"
 fi
