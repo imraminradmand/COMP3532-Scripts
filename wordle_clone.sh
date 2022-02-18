@@ -34,11 +34,20 @@ while [[ $guessedWord != $randomWord ]] && [[ $allowedAttempts -ne 0 ]]; do
     echo $allowedAttempts
     check_word $randomWord $guessedWord
     echo
+    read  -p "Your next guess: " guessedWord
+    length=${#guessedWord}
     while [[ $length -lt 6 ]] || [[ $length -gt 6 ]]; do
         read -p "Incorrect length, go again: " guessedWord
         length=${#guessedWord}
     done
-    read  -p "Your next guess: " guessedWord
-    length=${#guessedWord}
 done
 
+if (( $guessedWord == $randomWord )) && (( allowedAttempts == 6 )); then
+    echo "Got lucky eh?"
+elif (( $guessedWord == $randomWord )) && (( allowedAttempts >= 3 )); then
+    echo "Nicely done!"
+elif (( $guessedWord == $randomWord )) && (( allowedAttempts <= 2 )) && (( allowedAttempts != 0 )); then
+    echo "Cutting it close..."
+elif (( allowedAttemps == 0)); then
+    echo "Ran out of attempts :( better luck next time"
+fi
