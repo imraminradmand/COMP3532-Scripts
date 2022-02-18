@@ -26,7 +26,7 @@ while [[ $length -lt 6 ]] || [[ $length -gt 6 ]]; do
 done
 
 randomWord=$(shuf -n 1 $six_letter_words)
-echo $randomWord
+#echo $randomWord
 
 
 while [[ $guessedWord != $randomWord ]] && [[ $allowedAttempts -ne 0 ]]; do
