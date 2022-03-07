@@ -8,5 +8,6 @@ Collection of Shell scripts created in COMP 3532
         1. **passgen.sh** : This script will create a random password for you based on the flags you specify. The usage of the script is given when you run it. Lowercase, uppercase, password with special characters, digits, and passwords that do not include ambigious characters can be created using this script. </br>
         2. **pattern.sh** : This script will create a pattern justified to the right, center, or left with any given depth and any given character. The usage for this script is also given when you run it. </br>
         3. **install.sh** : Install script as you may have guessed, it will install the commands into your ~/bin directory and if you don't have one it'll create one. </br>
+5. **checkHash Folder** : The ```checkHash.sh``` script inside the folder will grab all the files in the checkHash directory that end in ```{1..4}.txt```. It will then hash them using ```SHA512sum``` and will then remove the filename from the end of the hash. Afterwards it will check that hash against a provided hash value and if they match it will echo out the filename that has matched.
 
 
