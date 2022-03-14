@@ -7,40 +7,53 @@ UFLAG='false'
 DFLAG='false';
 SFLAG='false';
 EFLAG='false';
+PFLAG='false';
 
 UPPER="A-Z"
 LOWER="a-z"
 DIGITS="0-9"
 SYMBOL="@#$%&*"
 
+NREGEX="-n\s?[0-9]*\s?"
+LREGEX=
+UREGEX=
+DFLAG=
+SREGEX=
+EREGEX=
+PREGEX=
 while [ $# -gt 0 ]; do
-    case $1 in
-    -*n) if [ $# -gt 1 ]; then
+if [[ $1 =~ $NREGEX ]]; then
+    echo 'inside n if'
+    if [ $# -gt 1 ]; then
              NFLAG='true'
              LENGTH=$2
              shift
-         fi
-         ;;
-    -*l*)
-        LFLAG='true'
-        ;;&
-    -*u*)
-        UFLAG='true'
-        ;;&
-    -*d*)
-        DFLAG='true'
-        ;;&
-    -*s*)
-        SFLAG='true'
-        ;;&
-    -*e*)
-        EFLAG='true'
-        ;;
-    *) ;;
-    esac
-    shift
+    fi
+
+elif ['-.*?l\s?']; then
+    LFLAG='true'
+
+elif ['-.*?u\s?']; then
+    UFLAG='true'
+
+elif ['-.*?d\s?']; then
+    DFLAG='true'
+
+elif ['-.*?s\s?']; then
+    SFLAG='true'
+
+elif ['-.*?e\s?']; then
+    EFLAG='true'
+
+elif ['-.*?p\s?']; then
+    PFLAG='true'
+
+else
+    echo 'something'
+fi
 done
 
+echo 'nflag : $NFLAG'
 if [ $LENGTH -le 0 ]; then
     echo "passgen: invalid -n argument '$LENGTH'"
 else
